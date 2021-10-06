@@ -15,6 +15,7 @@ options.add_extension("path/to/extension")
 prefs = { "download.default_directory" : "/some/directory"}
 options.add_experimental_option(prefs)
 
+driver = webdriver.Chrome(chrome_options=options)
 
 ### create webdriver client instance
 
@@ -27,7 +28,7 @@ driver = webdriver.Remote()
 
 ### driver properties
 
-driver.name # => ch
+driver.name # => chrome
 driver.capabilities
 driver.session_id
 
@@ -60,6 +61,12 @@ from selenium.webdriver.common.by import By
 
 driver.find_element(By.ID, "id")
 driver.find_elements(By.TAG_NAME, "button")
+driver.find_element(By.NAME, "name")
+driver.find_elements(By.CLASS_NAME, "classname")
+driver.find_element(By.LINK_TEXT, "link text")
+driver.find_element(By.PARTIAL_LINK_TEXT, "text")
+driver.find_element(By.XPATH, "//div[@class='classname']/button")
+driver.find_element(By.CSS_SELECTOR, ".classname > button")
 
 driver.find_element_by_id("id")
 driver.find_element_by_name("name")

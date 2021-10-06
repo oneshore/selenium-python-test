@@ -80,8 +80,13 @@ try:
 		print(element.text)
 
 
+### Inspecting element properties
 
-### Find sub elements
+### Interacting with Elements
+
+
+
+### Find elements from a Web Element
 
 	element:WebElement = driver.find_elements_by_css_selector(".product-description")
 	element.find_element_by_css_selector(".product-title")
