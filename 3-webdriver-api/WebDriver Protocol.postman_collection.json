@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "3589de70-8eb2-444c-9a1e-c38e3cbff421",
+		"name": "WebDriver Protocol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{chromedriver}}/status",
+					"host": [
+						"{{chromedriver}}"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json(); ",
+							"const session_id = response.sessionId;",
+							"pm.collectionVariables.set(\"session_id\", session_id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"desiredCapabilities\": {\n        \"caps\": {\n            \"nativeEvents\": false,\n            \"browserName\": \"chrome\",\n            \"version\": \"\",\n            \"platform\": \"ANY\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9515/session",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Sessions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{chromedriver}}/sessions",
+					"host": [
+						"{{chromedriver}}"
+					],
+					"path": [
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Session Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{chromedriver}}/session/{{session_id}}",
+					"host": [
+						"{{chromedriver}}"
+					],
+					"path": [
+						"session",
+						"{{session_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Quit Session",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9515/session/{{session_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"session",
+						"{{session_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Open URL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\":\"https://www.google.com\"}"
+				},
+				"url": {
+					"raw": "{{chromedriver}}/session/{{session_id}}/url",
+					"host": [
+						"{{chromedriver}}"
+					],
+					"path": [
+						"session",
+						"{{session_id}}",
+						"url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Element (Search Field)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json(); ",
+							"const element_id = response.value.ELEMENT;",
+							"pm.collectionVariables.set(\"element_id\", element_id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"using\": \"name\", \"value\": \"q\" }"
+				},
+				"url": {
+					"raw": "{{chromedriver}}/session/{{session_id}}/element",
+					"host": [
+						"{{chromedriver}}"
+					],
+					"path": [
+						"session",
+						"{{session_id}}",
+						"element"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Value",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"value\" : [\"selenium\"] }"
+				},
+				"url": {
+					"raw": "{{chromedriver}}/session/{{session_id}}/element/{{element_id}}/value",
+					"host": [
+						"{{chromedriver}}"
+					],
+					"path": [
+						"session",
+						"{{session_id}}",
+						"element",
+						"{{element_id}}",
+						"value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Element (Search Button)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json(); ",
+							"const element_id = response.value.ELEMENT;",
+							"pm.collectionVariables.set(\"element_id\", element_id)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"using\": \"name\", \"value\": \"btnK\" }"
+				},
+				"url": {
+					"raw": "{{chromedriver}}/session/{{session_id}}/element",
+					"host": [
+						"{{chromedriver}}"
+					],
+					"path": [
+						"session",
+						"{{session_id}}",
+						"element"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Click",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{chromedriver}}/session/{{session_id}}/element/{{element_id}}/click",
+					"host": [
+						"{{chromedriver}}"
+					],
+					"path": [
+						"session",
+						"{{session_id}}",
+						"element",
+						"{{element_id}}",
+						"click"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "chromedriver",
+			"value": "http://localhost:9515"
+		},
+		{
+			"key": "desiredCapabiliies",
+			"value": "{\n    \"desiredCapabilities\": {\n        \"caps\": {\n            \"nativeEvents\": false,\n            \"browserName\": \"chrome\",\n            \"version\": \"\",\n            \"platform\": \"ANY\"\n        }\n    }\n}\n"
+		},
+		{
+			"key": "session_id",
+			"value": ""
+		},
+		{
+			"key": "element_id",
+			"value": ""
+		}
+	]
+}
