@@ -54,7 +54,7 @@ Types of Locators
 Using Locators
 --------------
 
-- import By: 
+- import By:
 	```python
 	from selenium.webdriver.common.by import By
 	```
@@ -97,7 +97,7 @@ Search Context
 Locators are tuples
 -------------------
 
-- a locator strategy, the locator 
+- a locator strategy, the locator
 	```python
 	By.ID, "my-id"
 	(By.NAME, "my-name")
@@ -113,28 +113,28 @@ Locators are tuples
 	```
 - need to unpack the tuple with * operator (not multiplication)
 	```python
-	driver.find_element(*my_locator)	
+	driver.find_element(*my_locator)
 	```
 
 
 Locator strategy preference
 ---------------------------
 
-- ID is the preferred locator 
+- ID is the preferred locator
 	- (id should be unique)
-- NAME should also be unique 
+- NAME should also be unique
 	- (at least unique per form)
 - TAG_NAME likely to return multiple elements
-- CLASS_NAME can be used sometimes 
+- CLASS_NAME can be used sometimes
 	-(but CSS_SELECTORS can incorporated easily)
-- XPATH can be very precise 
+- XPATH can be very precise
 	- (but also complex)
 - CSS_SELECTOR almost as powerful as XPATH
 	- (but cleaner)
 	- (and likely to be know by front end developers)
 - LINK_TEXT can change (for example "Login" can be changed to "Sign In")
 	- also localization (different language versions of site "Hola" vs "Hello")
-- ONLY XPATH 
+- ONLY XPATH
 	- can find by relative XPATH -- siblings, etc
 	- can find by text nodes
 - CSS easy for ID and CLASS NAME
@@ -148,7 +148,7 @@ Attribute or Structure base locators
 
 	- Locate by Attribute focus on attributes of the element
 		- (id, class name, etc)
-	- Locate by Structure foxues on structure of the document 
+	- Locate by Structure foxues on structure of the document
 		- path from root
 		- (parent, child relationships)
 	- Finding by attributes is preferred
@@ -199,7 +199,7 @@ Using Chrome Developer Tools
 ----------------------------
 
 - Inspect
-- Menu 
+- Menu
 - CTRL + SHIFT + I
 
 
@@ -227,6 +227,44 @@ XPATH
 	//section[@class='featured-products clearfix']
 	```
 
+- Index
+	`//table/tbody/tr[1]`
+
+- Using attributes
+	`//div[@class='product-description']`
+
+- Using multiple attributes
+	`//input[@type='text'][@name='s']`
+
+- Or attributes
+	`//form[@method='get' or @method='post']`
+
+- Contains
+	`//div[contains(@class, 'product')]`
+
+- Starts with
+	`//div[starts-with(@class, 'product-')]`
+
+- Wildcard tag
+	`//*[contains(@class, 'product-')]`
+
+- Contains text
+	`//*[contains(text(), 'Hummingbird')]`
+
+- Ancestor, Descendant, Preceding, Following, Preceding-Sibling, Following-Sibling
+
+- Parent
+	`//*[contains(text(), 'Hummingbird')]/parent::h3`
+
+- Precending
+	`//*[contains(text(), 'Hummingbird')]/preceding::div`
+
+- Following Sibling
+	`//h3[contains(@class, 'product-title')]/following-sibling::div`
+
+
+- Relative
+	`//*[contains(text(), 'Hummingbird')]/../../div`
 
 CSS SELECTORS
 -------------
@@ -241,9 +279,62 @@ CSS SELECTORS
 	section#content
 	section.featured-products
 	```
-- or just the attribute 
+- or just the attribute
 	```
 	#content
 	.featured-products
 	[aria-label=Price]
 	```
+
+- Attribute value starts with
+	`div[class^='product']`
+
+- Attribute value ends with
+	`div[class$='title']`
+
+- Attribute value contains
+	`div[class*='contact']`
+
+- child
+	`.product-description > h3`
+
+- following siblings
+	`.product-title ~ div`
+
+- first following sibling
+	`.product-title + div`
+
+- first of type
+	`.products:first-of-type .product-description`
+
+-  last of type
+	`.products:last-of-type .product-description`
+
+-  positional
+	`.products:nth-of-type(2) .product-description`
+
+- first child
+	`.products:first-of-type .product-description div:first-child`
+
+
+
+differences between CSS & XPATH selectors
+-----------------------------------------
+
+	- Specify attribute
+	- XPATH : @
+	- CSS : none
+
+	- Specify attribute value (quotes optional for CSS)
+	- XPATH : //*div[class='foo']
+	- CSS : div[class=foo]
+
+	- find direct child node
+	- XPATH : //div[@id='foo']/a
+	- CSS : div#foo > a
+
+	- find any descendent child node
+	- XPATH : //table//td
+	- CSS : table td
+
+	- CSS cannot search for text nodes
