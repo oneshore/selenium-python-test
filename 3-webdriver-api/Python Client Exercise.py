@@ -48,7 +48,7 @@ try:
 	driver.forward()
 	driver.refresh()
 
-### close and quite
+### close and quit
 
 	driver.close()
 	driver.quit()

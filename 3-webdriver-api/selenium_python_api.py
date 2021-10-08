@@ -68,6 +68,10 @@ driver.find_element(By.PARTIAL_LINK_TEXT, "text")
 driver.find_element(By.XPATH, "//div[@class='classname']/button")
 driver.find_element(By.CSS_SELECTOR, ".classname > button")
 
+heading_locator = By.CSS_SELECTOR("h1")
+heading_locator = ("css selector", "h1")
+driver.find_element(**heading_locator)
+
 driver.find_element_by_id("id")
 driver.find_element_by_name("name")
 driver.find_element_by_tag_name("tag")
@@ -136,7 +140,8 @@ element.tag_name
 
 element.text
 
-# acting on web elements
+### acting on web elements
+
 element.click()
 element.send_keys("text")
 element.clear()
@@ -179,3 +184,4 @@ element.get_attribute("innerHTML")
 element.get_attribute("innerText")
 
 element.get_property() # returns current, not just source
+driver.current_url

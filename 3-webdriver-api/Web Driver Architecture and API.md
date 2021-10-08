@@ -27,6 +27,8 @@ Python Client Bindings
 
 	from selenium import webdriver
 
+- example
+
 Webdriver Wire Protocol
 ------------------
 
