@@ -49,3 +49,6 @@ alert_message_locator = By.CSS_SELECTOR, ".contact-form .alert"
 message = driver.find_element(*alert_message_locator)
 
 print(message.text)
+
+
+driver.quit()
