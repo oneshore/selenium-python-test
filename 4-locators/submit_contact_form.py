@@ -1,8 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
+from socket import gethostname
 # open the demo shop home page
-driver = webdriver.Chrome()
+options = webdriver.ChromeOptions()
+
+if "console" in gethostname():
+	options.add_argument("--headless")
+	options.add_argument("--disable-gpu")
+
+driver = webdriver.Chrome(options=options)
 driver.get("https://shop.one-shore.com/")
 
 # directly interact
