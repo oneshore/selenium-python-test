@@ -100,18 +100,7 @@ Custom Wait Conditions
 
 Making Explicit waits nicer
 ---------------------------
-- shorten expected conditions
-```python
-import expected_conditions as expected
-```
-- alias condition functions
-```python
-visible = expected.visibility_of_element_located
-```
-- now looks like this
-```python
-wait.until(visible(locator))
-```
+_
 
 - create a function (and add logging)
 ```python

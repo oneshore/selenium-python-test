@@ -104,7 +104,6 @@ when(visible(logout_button)).click()
 
 
 # wait function
-
 def when_visible(locator, description="element", timeout=15):
 	print(f"waiting for visibility of {description} located by {locator}")
 	if not wait:
@@ -112,7 +111,6 @@ def when_visible(locator, description="element", timeout=15):
 	return wait.until(expected.visibility_of_element_located(locator))
 
 when_visible(logout_button).click()
-
 
 # wrap actions
 def click(locator):
