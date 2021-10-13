@@ -7,6 +7,7 @@ def browser():
 	yield driver
 	driver.quit()
 
+@pytest.mark.usefixtures("browser")
 def test_open_demo_shop(browser):
 	browser.get("https://shop.one-shore.com")
 	assert "ONE SHORE" in browser.title
