@@ -5,6 +5,11 @@ name = "pypi"
 
 [packages]
 pytest = "*"
+pytest-xdist = "*"
+pytest-parallel = "*"
+pytest-html = "*"
+html-testrunner = "*"
+xmlrunner = "*"
 
 [dev-packages]
 
