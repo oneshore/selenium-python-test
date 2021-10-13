@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<testsuite name="TestMath-20211012070453" tests="4" time="0.000" failures="0" errors="0">
+	<testcase classname="TestMath" name="test_addition" time="0.000"/>
+	<testcase classname="TestMath" name="test_divide_by_zero" time="0.000"/>
+	<testcase classname="TestMath" name="test_division" time="0.000"/>
+	<testcase classname="TestMath" name="test_subtraction" time="0.000"/>
+	<system-out><![CDATA[]]></system-out>
+	<system-err><![CDATA[]]></system-err>
+</testsuite>
