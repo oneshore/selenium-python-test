@@ -15,7 +15,7 @@ wait = WebDriverWait(driver, 10)
 
 # scroll element into view
 
-driver.get("https://shop.one-shore.com")ß
+driver.get("https://shop.one-shore.com")
 top_menu:WebElement = driver.find_element(By.ID, "top-menu")
 top_menu.find_element(By.PARTIAL_LINK_TEXT, "ACCESSORIES").click()
 items:List[WebElement] = driver.find_elements(By.CSS_SELECTOR, "article")
