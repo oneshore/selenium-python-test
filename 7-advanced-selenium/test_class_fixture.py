@@ -24,7 +24,7 @@ def headless():
 	return False
 
 # fixtures can request other fixtures
-@pytest.fixture()
+@pytest.fixture(autouse=True)
 def options(headless):
 	options:ChromeOptions = ChromeOptions()
 	if headless:
@@ -33,7 +33,7 @@ def options(headless):
 	return options
 
 
-# fixtures can be automatically applied to tests
+# fixtures can yield
 @pytest.fixture()
 def browser(options):
 	browser = webdriver.Chrome(chrome_options=options)
@@ -44,6 +44,20 @@ def browser(options):
 	# if error:
 	# 	browser.save_screenshot()
 	browser.quit()
+
+
+@pytest.fixture()
+def chrome(request, options):
+	browser = webdriver.Chrome(chrome_options=options)
+	request.cls.browser = browser
+	browser.implicitly_wait=10
+	browser.maximize_window()
+	yield browser
+	print(f" title: {browser.title}")
+	sleep(1)
+	browser.quit()
+
+
 
 def test_function(browser):
 	browser.get("https://one-shore.com")
@@ -71,3 +85,8 @@ class TestClassFixture:
 		print(self.browser.title)
 
 
+@pytest.mark.oneshore
+@pytest.mark.usefixtures("chrome")
+class TestAutouseFixture:
+	def test_shop(self):
+		self.browser.get("https://one-shore.com")
