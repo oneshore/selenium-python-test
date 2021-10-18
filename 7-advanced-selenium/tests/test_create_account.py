@@ -1,25 +1,37 @@
 import pytest
 from webdriver_helpers import *
+from random import randint
 
 class TestCreateAccount:
 
 	@pytest.fixture(autouse=True)
 	def setup(self, driver):
 		self.driver = driver
+		self.wait = WebDriverWait(driver, 10)
 
 	def test_create_account(self):
-		self.navigate_to_create_account()
-		self.select_social_title("Mrs.")
-		self.enter_first_name("Lucy")
-		self.enter_last_name("O'brien")
-		self.enter_email("lucy2@example.com")
-		self.enter_password("Password1!")
-		self.check_required_checkboxes()
-		sleep(3)
-		self.check_required_checkboxes()
-		sleep(3)
+		title = "Mrs."
+		first_name = "Lucy"
+		last_name = "O'brien"
+		email = "lucy" + str(randint(1, 1000)) + "@example.com"
+		password = "Password1!"
 
+		self.navigate_to_create_account()
+		self.select_social_title(title)
+		self.enter_first_name(first_name)
+		self.enter_last_name(last_name)
+		self.enter_email(email)
+		self.enter_password(password)
+
+		self.check_required_checkboxes()
+		sleep(2)
+		self.check_required_checkboxes()
+		sleep(2)
 		self.click_save()
+		sleep(2)
+
+		assert self.logged_in()
+		assert self.get_account_name() == first_name + " " + last_name
 
 	def open_create_account_page(self):
 		self.driver.get("https://shop.one-shore.com/index.php?controller=authentication&create_account=1")
@@ -82,6 +94,15 @@ class TestCreateAccount:
 		save_button.click()
 
 
+	def logged_in(self):
+		self.wait.until(expected.title_is("ONESHORE DEMO SHOP"))
+		user_info = self.driver.find_element(By.CSS_SELECTOR, ".user-info")
+		if "Sign out" not in user_info.text:
+			return False
+		return True
+
+	def get_account_name(self):
+		return self.driver.find_element(By.CSS_SELECTOR, ".user-info .account").text
 
 	def scroll_into_view(self, element):
 		action:ActionChains = ActionChains(self.driver)

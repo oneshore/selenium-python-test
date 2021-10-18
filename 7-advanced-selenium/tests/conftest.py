@@ -22,5 +22,5 @@ def driver(chrome_options):
 	print(chrome_options)
 	driver = webdriver.Chrome(options=chrome_options)
 	yield driver
-	sleep(10)
+	sleep(4)
 	driver.quit()
