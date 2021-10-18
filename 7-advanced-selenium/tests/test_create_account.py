@@ -1,6 +1,6 @@
 import pytest
 from webdriver_helpers import *
-from random import randint
+from faker import Faker
 
 class TestCreateAccount:
 
@@ -8,12 +8,13 @@ class TestCreateAccount:
 	def setup(self, driver):
 		self.driver = driver
 		self.wait = WebDriverWait(driver, 10)
+		self.fake = Faker()
 
 	def test_create_account(self):
 		title = "Mrs."
-		first_name = "Lucy"
-		last_name = "O'brien"
-		email = "lucy" + str(randint(1, 1000)) + "@example.com"
+		first_name = self.fake.first_name()
+		last_name = self.fake.last_name()
+		email = self.fake.email()
 		password = "Password1!"
 
 		self.navigate_to_create_account()
