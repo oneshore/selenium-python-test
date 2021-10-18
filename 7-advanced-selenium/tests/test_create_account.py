@@ -1,6 +1,7 @@
 import pytest
 from webdriver_helpers import *
 from faker import Faker
+from types import SimpleNamespace
 
 class TestCreateAccount:
 
@@ -10,29 +11,53 @@ class TestCreateAccount:
 		self.wait = WebDriverWait(driver, 10)
 		self.fake = Faker()
 
-	def test_create_account(self):
-		title = "Mrs."
-		first_name = self.fake.first_name()
-		last_name = self.fake.last_name()
-		email = self.fake.email()
-		password = "Password1!"
+	@pytest.fixture
+	def account(self):
+		account = SimpleNamespace()
 
+		account.title = "Mrs."
+		account.first_name = self.fake.first_name()
+		account.last_name = self.fake.last_name()
+		account.full_name = account.first_name + " " + account.last_name
+		account.email = self.fake.email()
+		account.password = "Password1!"
+
+		self.account = account
+		return account
+
+	def test_create_account(self, account):
 		self.navigate_to_create_account()
-		self.select_social_title(title)
-		self.enter_first_name(first_name)
-		self.enter_last_name(last_name)
-		self.enter_email(email)
-		self.enter_password(password)
+		self.select_social_title(account.title)
+		self.enter_first_name(account.first_name)
+		self.enter_last_name(account.last_name)
+		self.enter_email(account.email)
+		self.enter_password(account.password)
 
-		self.check_required_checkboxes()
-		sleep(2)
 		self.check_required_checkboxes()
 		sleep(2)
 		self.click_save()
 		sleep(2)
 
 		assert self.logged_in()
-		assert self.get_account_name() == first_name + " " + last_name
+		assert self.get_account_name() == account.full_name
+
+
+	def test_create_account_mr(self, account):
+		self.navigate_to_create_account()
+		self.select_social_title("Mr.")
+		self.enter_first_name(account.first_name)
+		self.enter_last_name(account.last_name)
+		self.enter_email(account.email)
+		self.enter_password(account.password)
+
+		self.check_required_checkboxes()
+		sleep(2)
+		self.click_save()
+		sleep(2)
+
+		assert self.logged_in()
+		assert self.get_account_name() == account.full_name
+
 
 	def open_create_account_page(self):
 		self.driver.get("https://shop.one-shore.com/index.php?controller=authentication&create_account=1")
