@@ -62,10 +62,6 @@ class TestCreateAccount:
 		password_field = self.driver.find_element(By.NAME, "password")
 		password_field.send_keys(password)
 
-
-
-
-
 	def check_required_checkboxes(self):
 		checkboxes_locator = By.XPATH, "//input[@type='checkbox']"
 		checkboxes = self.driver.find_elements(*checkboxes_locator)
@@ -76,9 +72,6 @@ class TestCreateAccount:
 		)
 		print(f"required_checkboxes: {len(required_checkboxes)}")
 		[box.click() for box in required_checkboxes if not box.is_selected()]
-
-
-
 
 	def click_save(self):
 		save_button_locator = By.CSS_SELECTOR, ".register-form button[type=submit]"
