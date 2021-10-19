@@ -23,7 +23,7 @@ def driver():
 	sleep(3)
 	driver.quit()
 
-
+@pytest.mark.navigate
 def test_navigate_to_create_account(driver:WebDriver):
 	""" navigate to create account page """
 	driver.get("https://shop.one-shore.com")
