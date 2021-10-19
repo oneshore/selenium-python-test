@@ -11,6 +11,7 @@ pytest-html = "*"
 html-testrunner = "*"
 xmlrunner = "*"
 faker = "*"
+selenium = "==3.141"
 
 [dev-packages]
 
