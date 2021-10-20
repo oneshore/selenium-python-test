@@ -16,11 +16,12 @@ class TestCreateAccount:
 		account = SimpleNamespace()
 
 		account.title = "Mrs."
-		account.first_name = self.fake.first_name()
+		account.first_name = self.fake.first_name_female()
 		account.last_name = self.fake.last_name()
 		account.full_name = account.first_name + " " + account.last_name
 		account.email = self.fake.email()
 		account.password = "Password1!"
+		print(account)
 
 		self.account = account
 		return account
