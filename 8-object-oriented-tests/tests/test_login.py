@@ -13,7 +13,6 @@ from login_page import LoginPage
 def loginPage(driver):
 	return LoginPage(driver)
 
-
 @pytest.fixture()
 def account():
 	account = SimpleNamespace(
@@ -21,26 +20,24 @@ def account():
 		first_name='Tamara',
 		last_name='Thomas',
 		full_name='Tamara Thomas',
-		email='nathan75@example.com',
+		email='tamarathomas@example.com',
 		password='Password1!')
 
 	return account
 
 
 @pytest.mark.success
-def test_login_success(driver, account):
+def test_login_success(loginPage, account):
 	print("__name__")
-	print(driver)
 	print(account)
 	
-	login_page = LoginPage(driver)
-	login_page.open()
-	login_page.enter_email_address(account.email)
-	login_page.enter_password(account.password)
-	login_page.click_login_button()
+	loginPage.open()
+	loginPage.enter_email_address(account.email)
+	loginPage.enter_password(account.password)
+	loginPage.click_login_button()
 
-	assert logged_in(driver)
-	assert get_account_name(driver) == account.full_name
+	assert logged_in(loginPage.driver)
+	assert get_account_name(loginPage.driver) == account.full_name
 
 @pytest.mark.failure
 def test_login_failure(driver, account):
