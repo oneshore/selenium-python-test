@@ -1,5 +1,4 @@
 import pytest
-from time import sleep
 from types import SimpleNamespace
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
@@ -7,6 +6,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import TimeoutException
+
+from login_page import LoginPage
+
+@pytest.fixture()
+def loginPage(driver):
+	return LoginPage(driver)
 
 
 @pytest.fixture()
@@ -21,38 +26,39 @@ def account():
 
 	return account
 
-login_url = "https://shop.one-shore.com/index.php?controller=authentication"
-email_field_locator = By.CSS_SELECTOR, "#login-form input[name=email]"
-password_field_locator = By.CSS_SELECTOR, "#login-form input[name=password]"
-login_button = By.CSS_SELECTOR, "#login-form button#submit-login"
 
 @pytest.mark.success
 def test_login_success(driver, account):
 	print("__name__")
-	driver.get(login_url)
-	print("got title: " + driver.title)
-	assert driver.title == "Login"
+	print(driver)
 	print(account)
-	driver.find_element(*email_field_locator).send_keys(account.email)
-	driver.find_element(*password_field_locator).send_keys(account.password)
-	driver.find_element(*login_button).click()
-	print("got title: " + driver.title)
+	
+	login_page = LoginPage(driver)
+	login_page.open()
+	login_page.enter_email_address(account.email)
+	login_page.enter_password(account.password)
+	login_page.click_login_button()
+
 	assert logged_in(driver)
 	assert get_account_name(driver) == account.full_name
-
 
 @pytest.mark.failure
 def test_login_failure(driver, account):
 	print("__name__")
-	driver.get(login_url)
-	assert driver.title == "Login"
-	print("got title: " + driver.title)
+	print(driver)
 	print(account)
-	driver.find_element(*email_field_locator).send_keys(account.email)
-	driver.find_element(*password_field_locator).send_keys("invalid password")
-	driver.find_element(*login_button).click()
-	print("got title: " + driver.title)
+	
+	login_page = LoginPage(driver)
+	login_page.open()
+	login_page.enter_email_address(account.email)
+	login_page.enter_password("invalid password")
+	login_page.click_login_button()
+
 	assert not logged_in(driver)
+
+
+
+
 
 def logged_in(driver):
 	try: 
