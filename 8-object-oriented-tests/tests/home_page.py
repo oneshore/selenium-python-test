@@ -58,3 +58,12 @@ class HomePage(SeleniumPage):
 
 	def click_account_link(self):
 		self.get_account_link().click()
+
+	def search_for_product(self, product_name):
+		## this is where you add selenium steps
+
+		# find seach field
+		# type product name
+		# click search button (or press enter key)
+
+		
