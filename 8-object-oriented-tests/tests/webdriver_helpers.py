@@ -13,7 +13,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
-
+from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import TimeoutException
 
 def running_on_python_anywhere():
 	if "console" in gethostname():
