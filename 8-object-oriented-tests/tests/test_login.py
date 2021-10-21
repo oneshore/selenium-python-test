@@ -30,7 +30,7 @@ def account():
 
 @pytest.mark.success
 def test_login_success(loginPage, homePage:HomePage, account):
-	print("__name__")
+	print(__name__)
 	print(account)
 	
 	loginPage.open()
@@ -43,7 +43,7 @@ def test_login_success(loginPage, homePage:HomePage, account):
 
 @pytest.mark.failure
 def test_login_failure(loginPage, homePage:HomePage, account):
-	print("__name__")
+	print(__name__)
 	print(account)
 	
 	loginPage.open()
@@ -57,4 +57,7 @@ def test_login_failure(loginPage, homePage:HomePage, account):
 	assert not homePage.logged_in()
 
 
-
+@pytest.mark.login
+def test_login(loginPage:LoginPage, account):
+	print(f"test: {__name__}")
+	loginPage.login(account.email, account.password)

@@ -1,8 +1,9 @@
 from webdriver_helpers import *
+from selenium_page import SeleniumPage
 
-class HomePage:
+class HomePage(SeleniumPage):
 
-	TIMEOUT = 10
+	TITLE = "ONESHORE DEMO SHOP"
 	URL = "https://shop.one-shore.com/index.php"
 
 	sign_in_link_locator = By.PARTIAL_LINK_TEXT, "Sign in"
@@ -11,15 +12,14 @@ class HomePage:
 	user_info_link_locator = By.CSS_SELECTOR, ".user-info > a:first-of-type"
 
 	def __init__(self, driver:WebDriver):
-		self.driver = driver
-		self.wait = WebDriverWait(driver, HomePage.TIMEOUT)
+		super().__init__(driver, self.URL)
 
 	def open(self):
 		self.driver.get(HomePage.URL)
 
-	def current_page(self):
+	def is_current_page(self):
 		try:
-			self.wait.until(expected.title_is("ONESHORE DEMO SHOP"))
+			self.wait.until(expected.title_is(self.TITLE))
 			return True
 		except:
 			print(f"not on expected page {__class__.__name__}")
@@ -27,7 +27,7 @@ class HomePage:
 
 	def logged_in(self):
 		try:
-			if not self.current_page():
+			if not self.is_current_page():
 				raise Exception(f"not on expected page {__class__.__name__}")
 
 			user_info = self.driver.find_element(*self.user_info_link_locator)
