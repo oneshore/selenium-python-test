@@ -1,5 +1,6 @@
 from webdriver_helpers import *
 from selenium_page import SeleniumPage
+from search_page import SearchPage
 from typing import List
 
 class HomePage(SeleniumPage):
@@ -60,7 +61,7 @@ class HomePage(SeleniumPage):
 	def click_account_link(self):
 		self.get_account_link().click()
 
-	def search_for_product(self, product_name) -> List[WebElement]:
+	def search_for_product(self, product_name) -> SearchPage:
 
 		search_field_locator = By.CSS_SELECTOR, "#search_widget input[name=s]"
 		search_button_locator = By.CSS_SELECTOR, "#search_widget button[type=submit]"
@@ -75,11 +76,6 @@ class HomePage(SeleniumPage):
 		search_button = self.driver.find_element(*search_button_locator)
 		search_button.click()
 
-		# verify search results are displayed
-		search_results_header_locator = By.CSS_SELECTOR, "#js-product-list-header"
-		search_results_header = self.wait.until(expected.visibility_of_element_located(search_results_header_locator))
-		if search_results_header.text != "SEARCH RESULTS":
-			raise Exception("no search results")
-
-		search_results = self.driver.find_elements(By.CSS_SELECTOR, "article")
-		return search_results
+		# return search results page when displayed
+		self.when_visible(SearchPage.search_results_header_locator)
+		return SearchPage(self.driver)

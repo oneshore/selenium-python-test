@@ -1,5 +1,6 @@
 import pytest
 from home_page import HomePage
+from search_page import SearchPage
 # use the fixtures from conftest.py to get driver
 
 @pytest.fixture()
@@ -13,7 +14,14 @@ def test_search_for_item(homePage:HomePage):
 	homePage.open()
 
 	# get mugs from search results
-	mugs = homePage.search_for_product("mug")
+	searchPage = homePage.search_for_product("mug")
+	search_results = searchPage.get_search_results()
+
+	# check content of search results
+	print(search_results.count)
+	for item in search_results:
+		print(item.text)
+		assert "mug" in item.text.lower()
 
 	# assert results
-	assert len(mugs) == 5
+	assert len(search_results) == 5
