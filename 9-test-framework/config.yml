@@ -1,0 +1,4 @@
+webdriver.chrome.driver: c:\\path\\to\\chromedriver
+webdriver.edge.driver: c:\\path\\to\\edgedriver
+webdriver.gecko.driver: C:\\path\\to\\geckodriver
+
