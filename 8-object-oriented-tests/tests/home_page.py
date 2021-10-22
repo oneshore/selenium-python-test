@@ -32,14 +32,14 @@ class HomePage(SeleniumPage):
 
 			user_info = self.driver.find_element(*self.user_info_link_locator)
 			print("user info: " + user_info.text)
-			
+
 			if "Sign out" in user_info.text:
 				print("logged in")
 				return True
 			else:
 				print("logged out")
 				return False
-		except TimeoutException as e: 
+		except TimeoutException as e:
 			print("timeout")
 			print(e)
 			return False
@@ -47,7 +47,7 @@ class HomePage(SeleniumPage):
 			print(e)
 		return False
 
-		
+
 	def get_account_link(self):
 		account_link =  self.driver.find_element(*HomePage.account_link_locator)
 		print(account_link.text)
@@ -65,5 +65,3 @@ class HomePage(SeleniumPage):
 		# find seach field
 		# type product name
 		# click search button (or press enter key)
-
-		
