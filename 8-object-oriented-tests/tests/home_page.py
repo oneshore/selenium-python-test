@@ -60,8 +60,20 @@ class HomePage(SeleniumPage):
 		self.get_account_link().click()
 
 	def search_for_product(self, product_name):
-		## this is where you add selenium steps
+		search_field_locator = By.CSS_SELECTOR, "#search_widget input[name=s]"
+		search_button_locator = By.CSS_SELECTOR, "#search_widget button[type=submit]"
 
+		search_field = self.driver.find_element(*search_field_locator)
+		search_field.send_keys(product_name)
+
+		search_button = self.driver.find_element(*search_button_locator)
+		search_button.click()
+
+
+		'''
+		it will pass
+		'''
+		## this is where you add selenium steps
 		# find seach field
 		# type product name
 		# click search button (or press enter key)
