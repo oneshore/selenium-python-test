@@ -11,10 +11,9 @@ def homePage(driver):
 def test_search_for_item(homePage:HomePage):
 	## use home page object
 	homePage.open()
-	homePage.search_for_product("mug")
 
 	# get mugs from search results
-	mugs = [] #TODO: find search results and add to list
+	mugs = homePage.search_for_product("mug")
 
 	# assert results
 	assert len(mugs) == 5
