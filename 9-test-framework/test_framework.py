@@ -1,23 +1,13 @@
-import sys
 import pytest
-import yaml
-import logging
-from time import sleep
-from selenium import webdriver
+from base_framework import BaseFramework
 
-logging.basicConfig()
-log = logging.getLogger("framework")
-log.setLevel(logging.DEBUG)
-log.addHandler(logging.FileHandler("framework.log"))
-log.addHandler(logging.StreamHandler(sys.stdout))
+class TestFramework(BaseFramework):
 
-@pytest.fixture
-def driver():
-	driver = webdriver.Chrome()
-	yield driver
-	sleep(3)
-	driver.quit()
+	@pytest.fixture
+	def get_browser(self, driver):
+		self.driver = driver
+		self.setup()
 
-def test_launch_browser(driver):
-	driver.get("https://shop.one-shore.com")
-	log.info(driver.title)
+	def test_launch_browser(self):
+		self.driver.get("https://shop.one-shore.com")
+		self.log.info(self.driver.title)

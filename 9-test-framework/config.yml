@@ -1,8 +1,9 @@
 webdriver.chrome.driver: "chromedriver"
 webdriver.edge.driver: "c:\\path\\to\\edgedriver"
-webdriver.gecko.driver: :"geckodriver"
+webdriver.gecko.driver: "geckodriver"
 
 browser:
-	name: chrome
+ name: chrome
+ headless: True
 
 
