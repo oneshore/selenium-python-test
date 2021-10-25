@@ -16,3 +16,4 @@ class SearchPage(SeleniumPage):
 	def get_search_results(self) -> List[WebElement]:
 		search_results = self.driver.find_elements(By.CSS_SELECTOR, "article")
 		return search_results
+		#comment
