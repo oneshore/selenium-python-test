@@ -3,8 +3,6 @@ from selenium import webdriver
 
 SELENIUM_GRID_URL = "http://192.168.1.143:4444"
 
-
-
 def test_on_chrome_linux():
 	capabilities = { "platformName": "linux", "browserName": "chrome" }
 	driver = webdriver.Remote(command_executor=SELENIUM_GRID_URL, desired_capabilities=capabilities)
