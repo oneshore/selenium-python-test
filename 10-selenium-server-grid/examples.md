@@ -1,7 +1,7 @@
 1. Start Selenium Server
 
 	`java -jar selenium-server-standalone-3.141.59.jar`
-
+	`java -jar selenium-server-4.0.0.jar standalone -port 6666`
 2. Run selenium with remote web driver and desired capabilities
 
 ```python
@@ -33,7 +33,7 @@ driver.quit()
 # grid-example.py
 
 from selenium import webdriver
-from selenium.webdriver.common import desired_capabilities
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 # selenium server 3 path
 selenium_server_url = "http://localhost:4444/wd/hub"
