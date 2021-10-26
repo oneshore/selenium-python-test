@@ -1,6 +1,6 @@
 1. Start Selenium Server
 
-	java -jar selenium-server-standalone-3.141.59.jar
+	`java -jar selenium-server-standalone-3.141.59.jar`
 
 2. Run selenium with remote web driver and desired capabilities
 
@@ -21,11 +21,11 @@ driver.quit()
 
 3. Start Selenium Grid hub
 
-	java -jar selenium-server-4.0.0.jar hub
+	`java -jar selenium-server-4.0.0.jar hub`
 
 4. Start Selenium Grid node
 
-	java -jar selenium-server-4.0.0.jar node --hub http://192.168.1.143:4444
+	`java -jar selenium-server-4.0.0.jar node --hub http://192.168.1.143:4444`
 
 5. Run on selenium grid
 
@@ -90,25 +90,25 @@ def test_on_edge_windows():
 
 7. Execute tests in parallel
 
-	pip install pytest-xdist
+	`pip install pytest-xdist`
 
-	pip install pytest-html
+	`pip install pytest-html`
 
-	pip install pytest-parallel
+	`pip install pytest-parallel`
 
-	pytest -vs -n 4 --html=report.html --self-contained-html test-cross-browser.py
+	`pytest -vs -n 4 --html=report.html --self-contained-html test-cross-browser.py`
 
 8. Alternatives
 
-	pip install pytest-parallel
+	`pip install pytest-parallel`
 
-	pip install pytest-html-reporter
+	`pip install pytest-html-reporter`
 
-	pytest -vs -n 4 --html=report.html --self-contained-html test-cross-browser.py
+	`pytest -vs --workers=4 --html=report.html --self-contained-html test-cross-browser.py`
 
-	pytest -vs --html-report=./reports test-cross-browser.py
+	`pytest -vs --html-report=./reports test-cross-browser.py`
 
-	# NOTE:  pytest-html-reporter does not report parallel parameterized tests
+	### NOTE:  pytest-html-reporter does not report parallel parameterized tests
 
 9. Run cross browser with parametrize
 
@@ -140,4 +140,4 @@ def test_cross_browser(browser, platform):
 ```
 10. Run parameterized tests in parallel
 
-	pytest -vs -n 6 --html=./report.html test-with-parametrize.py
+	`pytest -vs -n 6 --html=./report.html test-with-parametrize.py`
