@@ -1,4 +1,4 @@
-# browserstack.py
+# browserstack-example.py
 
 import os
 from selenium import webdriver

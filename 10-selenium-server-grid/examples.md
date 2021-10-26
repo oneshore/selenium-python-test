@@ -141,3 +141,68 @@ def test_cross_browser(browser, platform):
 10. Run parameterized tests in parallel
 
 	`pytest -vs -n 6 --html=./report.html test-with-parametrize.py`
+
+11. Run tests on Sauce Labs
+
+On Mac or Linux
+
+	`export SAUCE_USENRAME=yourusername`
+	`export SAUCE_ACCESS_KEY=youraccesskey`
+
+On Windows
+
+`setx SAUCE_USENRAME yourusername`
+`setx SAUCE_ACCESS_KEY youraccesskey`
+
+```python
+import os
+from selenium import webdriver
+
+SAUCE_USERNAME = os.getenv("SAUCE_USERNAME")
+SAUCE_ACCESS_KEY = os.getenv("SAUCE_ACCESS_KEY")
+
+SAUCE_OPTIONS = {
+	"username": SAUCE_USERNAME,
+	"accessKey": SAUCE_ACCESS_KEY,
+	"name": "Shop test"
+}
+
+capabilities = {
+	"browserName": "chrome",
+	"version": "latest",
+	"platform": "any",
+	"sauce:options": SAUCE_OPTIONS
+}
+
+driver = webdriver.Remote(command_executor=SAUCE_URL, desired_capabilities=capabilities)
+driver.get("https://shop.one-shore.com")
+print(driver.title)
+driver.quit()
+```
+
+12. Run tests on Browserstack
+
+
+```python
+# browserstack-example.py
+
+import os
+from selenium import webdriver
+
+BROWSERSTACK_USERNAME = os.getenv("BROWSERSTACK_USERNAME")
+BROWSERSTACK_ACCESS_KEY = os.getenv("BROWSERSTACK_ACCESS_KEY")
+BROWSERSTACK_URL = f"https://{BROWSERSTACK_USERNAME}:{BROWSERSTACK_ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub"
+
+capabilities = {
+	"browser": "Safari",
+	"browser_version": "latest",
+	"os": "OS X",
+	"os_version": "Big Sur",
+	"name": "Test Name"
+}
+
+driver = webdriver.Remote(command_executor=BROWSERSTACK_URL, desired_capabilities=capabilities)
+driver.get("https://shop.one-shore.com")
+print(driver.title)
+driver.quit()
+```
