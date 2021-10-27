@@ -1,3 +1,4 @@
+from time import sleep
 import pytest
 from selenium import webdriver
 
@@ -8,6 +9,7 @@ def test_on_chrome_linux():
 	driver = webdriver.Remote(command_executor=SELENIUM_GRID_URL, desired_capabilities=capabilities)
 	driver.get("https://shop.one-shore.com")
 	print(driver.title, driver.capabilities)
+	sleep(10)
 	driver.quit()
 
 def test_on_safari_mac():
@@ -15,6 +17,7 @@ def test_on_safari_mac():
 	driver = webdriver.Remote(command_executor=SELENIUM_GRID_URL, desired_capabilities=capabilities)
 	driver.get("https://shop.one-shore.com")
 	print(driver.title, driver.capabilities)
+	sleep(10)
 	driver.quit()
 
 def test_on_firefox_mac():
@@ -22,6 +25,7 @@ def test_on_firefox_mac():
 	driver = webdriver.Remote(command_executor=SELENIUM_GRID_URL, desired_capabilities=capabilities)
 	driver.get("https://shop.one-shore.com")
 	print(driver.title, driver.capabilities)
+	sleep(10)
 	driver.quit()
 
 def test_on_edge_windows():
@@ -29,6 +33,7 @@ def test_on_edge_windows():
 	driver = webdriver.Remote(command_executor=SELENIUM_GRID_URL, desired_capabilities=capabilities)
 	driver.get("https://shop.one-shore.com")
 	print(driver.title, driver.capabilities)
+	sleep(10)
 	driver.quit()
 
 # pip install html-reporter

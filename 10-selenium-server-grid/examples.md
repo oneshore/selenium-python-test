@@ -2,6 +2,7 @@
 
 	`java -jar selenium-server-standalone-3.141.59.jar`
 	`java -jar selenium-server-4.0.0.jar standalone -port 6666`
+
 2. Run selenium with remote web driver and desired capabilities
 
 ```python
