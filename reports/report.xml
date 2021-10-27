@@ -1,1 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="5" time="13.046" timestamp="2021-10-27T10:01:41.910768" hostname="macbook.oneshore.lcl"><testcase classname="test_on_sauce-labs" name="test_contact_form_on_sauce" time="12.927" /><testcase classname="test_simple" name="test_addition" time="0.000" /><testcase classname="test_simple" name="test_subtraction" time="0.000" /><testcase classname="test_simple" name="test_multiplication" time="0.000" /><testcase classname="test_simple" name="test_division" time="0.001" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="0.273" timestamp="2021-10-27T10:09:36.178471" hostname="macbook.oneshore.lcl"><testcase classname="" name="test_on_sauce-labs" time="0.000"><error message="collection failure">../.pyenv/versions/3.9.6/envs/oneshore/lib/python3.9/site-packages/_pytest/python.py:578: in _importtestmodule
+    mod = import_path(self.fspath, mode=importmode)
+../.pyenv/versions/3.9.6/envs/oneshore/lib/python3.9/site-packages/_pytest/pathlib.py:524: in import_path
+    importlib.import_module(module_name)
+../.pyenv/versions/3.9.6/lib/python3.9/importlib/__init__.py:127: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+&lt;frozen importlib._bootstrap&gt;:1030: in _gcd_import
+    ???
+&lt;frozen importlib._bootstrap&gt;:1007: in _find_and_load
+    ???
+&lt;frozen importlib._bootstrap&gt;:986: in _find_and_load_unlocked
+    ???
+&lt;frozen importlib._bootstrap&gt;:680: in _load_unlocked
+    ???
+../.pyenv/versions/3.9.6/envs/oneshore/lib/python3.9/site-packages/_pytest/assertion/rewrite.py:161: in exec_module
+    source_stat, co = _rewrite_test(fn, self.config)
+../.pyenv/versions/3.9.6/envs/oneshore/lib/python3.9/site-packages/_pytest/assertion/rewrite.py:354: in _rewrite_test
+    tree = ast.parse(source, filename=fn_)
+../.pyenv/versions/3.9.6/lib/python3.9/ast.py:50: in parse
+    return compile(source, filename, mode, flags,
+E     File "/Users/aaronevans/selenium-python-test/11-continuous-integration/test_on_sauce-labs.py", line 50
+E       	wait = WebDriverWait(driver, 10)
+E       	^
+E   SyntaxError: invalid syntax</error></testcase></testsuite></testsuites>

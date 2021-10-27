@@ -44,6 +44,9 @@ def test_contact_form_on_sauce():
 	driver.get("https://shop.one-shore.com")
 	print(driver.title)
 
+
+	print(f"SauceOnDemandSessionID={driver.session_id} job-name={__name__}")
+
 	wait = WebDriverWait(driver, 10)
 
 	### navigate to contact page
@@ -86,5 +89,7 @@ def test_contact_form_on_sauce():
 	alert_message_locator = By.CSS_SELECTOR, ".contact-form .alert"
 	alert_message = wait.until(expected.visibility_of_element_located(alert_message_locator))
 	assert alert_message.text == "Your message has been successfully sent to our team."
+
+
 
 	driver.quit()
