@@ -1,5 +1,11 @@
 *.log
 
+reports/
+assets/
+archive/
+output.json
+pytest_html_report.html
+report.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
