@@ -57,11 +57,9 @@ def test_open_shop(driver):
 	print(driver.title)
 	assert driver.title == "ONESHORE DEMO SHOP"
 
-def test_contact_form_on_sauce():
-	driver = webdriver.Remote(command_executor=SAUCE_URL, desired_capabilities=capabilities)
+def test_contact_form_on_sauce(driver):
 	driver.get("https://shop.one-shore.com")
 	print(driver.title)
-	print(f"SauceOnDemandSessionID={driver.session_id} job-name={__name__}")
 
 	wait = WebDriverWait(driver, 10)
 
@@ -105,7 +103,3 @@ def test_contact_form_on_sauce():
 	alert_message_locator = By.CSS_SELECTOR, ".contact-form .alert"
 	alert_message = wait.until(expected.visibility_of_element_located(alert_message_locator))
 	assert alert_message.text == "Your message has been successfully sent to our team."
-
-
-
-	driver.quit()
