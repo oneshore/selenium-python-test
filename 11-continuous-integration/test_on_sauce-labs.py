@@ -34,15 +34,19 @@ SAUCE_OPTIONS = {
 	"name": "Shop test"
 }
 
-capabilities = {
-	"browserName": "chrome",
-	"version": "latest",
-	"platform": "any",
-	"sauce:options": SAUCE_OPTIONS
-}
 
 @pytest.fixture
-def driver():
+def driver(request):
+	testname = request.node.name
+	SAUCE_OPTIONS['name'] = testname
+
+	capabilities = {
+		"browserName": "chrome",
+		"version": "latest",
+		"platform": "any",
+		"sauce:options": SAUCE_OPTIONS
+	}
+
 	driver = webdriver.Remote(command_executor=SAUCE_URL, desired_capabilities=capabilities)
 	print(f"SauceOnDemandSessionID={driver.session_id} job-name={__name__}")
 	yield driver
@@ -51,7 +55,7 @@ def driver():
 def test_open_shop(driver):
 	driver.get("https://shop.one-shore.com")
 	print(driver.title)
-	assert driver.title == "ONESHORE DEMO SHOP"
+	assert driver.title = "ONESHORE DEMO SHOP"
 
 def test_contact_form_on_sauce():
 	driver = webdriver.Remote(command_executor=SAUCE_URL, desired_capabilities=capabilities)
