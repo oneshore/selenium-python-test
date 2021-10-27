@@ -1,4 +1,6 @@
 import os
+import pytest
+
 from selenium import webdriver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -39,12 +41,22 @@ capabilities = {
 	"sauce:options": SAUCE_OPTIONS
 }
 
+@pytest.fixture
+def driver():
+	driver = webdriver.Remote(command_executor=SAUCE_URL, desired_capabilities=capabilities)
+	print(f"SauceOnDemandSessionID={driver.session_id} job-name={__name__}")
+	yield driver
+	driver.quit()
+
+def test_open_shop(driver):
+	driver.get("https://shop.one-shore.com")
+	print(driver.title)
+	assert driver.title == "ONESHORE DEMO SHOP"
+
 def test_contact_form_on_sauce():
 	driver = webdriver.Remote(command_executor=SAUCE_URL, desired_capabilities=capabilities)
 	driver.get("https://shop.one-shore.com")
 	print(driver.title)
-
-
 	print(f"SauceOnDemandSessionID={driver.session_id} job-name={__name__}")
 
 	wait = WebDriverWait(driver, 10)
