@@ -1,9 +1,5 @@
 *.log
 
-reports/
-*.html
-archive/
-assets/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
