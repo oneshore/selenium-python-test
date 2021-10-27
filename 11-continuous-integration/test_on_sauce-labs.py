@@ -55,7 +55,7 @@ def driver(request):
 def test_open_shop(driver):
 	driver.get("https://shop.one-shore.com")
 	print(driver.title)
-	assert driver.title = "ONESHORE DEMO SHOP"
+	assert driver.title == "ONESHORE DEMO SHOP"
 
 def test_contact_form_on_sauce():
 	driver = webdriver.Remote(command_executor=SAUCE_URL, desired_capabilities=capabilities)
