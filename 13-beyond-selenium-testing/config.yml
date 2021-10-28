@@ -1,0 +1,4 @@
+browser:
+ name: chrome
+ headless: False
+url: https://shop.one-shore.com

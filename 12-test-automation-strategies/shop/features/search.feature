@@ -1,7 +1,7 @@
 @shop
 Feature: Product Search
 
-As a user on the
+As a user on the shopping site
 I want to find items
 So that I can purchase them
 

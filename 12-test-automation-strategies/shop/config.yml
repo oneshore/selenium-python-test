@@ -1,2 +1,3 @@
-browser: firefox
+browser: chrome
 headless: False
+url: https://shop.one-shore.com
