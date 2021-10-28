@@ -1,9 +1,11 @@
+@shop
 Feature: Product Search
 
 As a user on the
 I want to find items
 So that I can purchase them
 
+@search
 Scenario: Search for mugs
 
 Given I am on the shop home page

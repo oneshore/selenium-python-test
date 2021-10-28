@@ -8,12 +8,12 @@ def create_account(context, amount):
 def set_atm_fee(context, atm_fee):
 	context.atm_fee = atm_fee
 
-@when('I withdraw "{withdrawl:d}" dollars via ATM')
-def atm_withdrawl(context, withdrawl):
-	context.account -= withdrawl
+@when('I withdraw "{withdrawal:d}" dollars via ATM')
+def atm_withdrawl(context, withdrawal):
+	context.account -= withdrawal
 	context.account -= context.atm_fee
 
-@when(u'I withdraw "{withdrawl:d}" dollars at the bank')
+@when('I withdraw "{withdrawl:d}" dollars at the bank')
 def bank_withdrawl(context, withdrawl):
 	context.account -= withdrawl
 

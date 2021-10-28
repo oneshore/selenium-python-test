@@ -4,11 +4,6 @@ import yaml
 import os
 
 def before_scenario(context, scenario):
-	file = "config.yml"
-	dir = os.getcwd()
-	print()
-	print("dir: " + dir)
-
 
 	with open("config.yml") as config_yml:
 		config = yaml.safe_load(config_yml)

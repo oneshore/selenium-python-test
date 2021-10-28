@@ -113,7 +113,27 @@ Then ... <some result is observed>
 ```
 ## Gherkin Example
 
--
+account.feature
+
+```gherkin
+Feature: Account
+account.feature
+
+As a bank account holder
+I want to withdraw money
+So that I can spend it
+
+Scenario:
+	Given I have "100" dollars in my account
+	And The ATM fee is "1" dollars
+	When I withdraw "20" dollars via ATM
+	Then I should have "79" dollars in my account
+
+Scenario:
+	Given I have "100" dollars in my account
+	When I withdraw "20" dollars at the bank
+	Then I should have "79" dollars in my account
+```
 
 ## Benefits of BDD
 
@@ -178,11 +198,46 @@ def some_result(context):
 - add data to a feature file step
 
 ```
-@given('I have "$100" in my account')
+Given I have "100" dollars in my account
+```
 
-### Tables
+```python
+@given('I have "{amount:d}" dollars in my account')
+```
+
+### Passing data to steps
+
+- table
+
+```
+| transaction | amount |
+| deposit     | 100    |
+| withdrawl   | 50     |
+```
+
+`context.table`
+
+- text
+
+```python
+"""
+this will be available in the test
+"""
+```
+
+`context.text`
+
 
 ### Scenario Outlines
+
+- example with scenario outline
+
+### Tags
+
+- run only specific tags
+
+` behave --tags="@shop" `
+
 
 ### Hooks
 
@@ -192,6 +247,22 @@ def some_result(context):
 	- feature
 	- scenario
 	- step
+
+
+### Fixtures
+
+- similar to pytest fixtures
+
+```python
+from behave import fixture
+from selenium import webdriver
+
+@fixture
+def browser(context):
+	context.driver = webdriver.Chrome()
+	yield context.driver
+	context.driver.quit()
+```
 
 ### Context
 
@@ -214,10 +285,29 @@ def some_result(context):
 - Relies on Splinter (not Selenium)
 - Splinter sits on top of Selenium
 - But also other methods of automation
-- Newer project, but gaining momementum
+- Newer project, but gaining momentum
 
 
 Keyword Driven Tests
 --------------------
 
+- keywords describe test steps
+- separates documentation of tests from implementation
+- similar to BDD, but more succinct
+- allows less technical users to write test scenarios
+- still requires someone to implement keyword steps
+
 ## Robot Framework
+
+- for acceptance tests
+- original idea by Pekka Klarck at Nokia
+- keywords map to functions
+- emphasis on human readability
+- tables are plain text, or tab separated
+- RIDE idea helps to write tests
+
+`pip install robotframework`
+https://robotframework.org/
+
+
+see example at https://robotframework.org/?tab=1#getting-started

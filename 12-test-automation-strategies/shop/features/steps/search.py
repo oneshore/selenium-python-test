@@ -27,3 +27,5 @@ def check_results(context):
 	for item in context.results:
 		print(item.text)
 		assert "mug" in item.text.lower()
+
+
