@@ -6,6 +6,7 @@ from shop.home_page import HomePage
 from shop.login_page import LoginPage
 from shop.search_page import SearchPage
 
+
 from axe_selenium_python_dev import Axe
 
 log = logging.getLogger("A11Y")
@@ -37,7 +38,6 @@ def test_accessibility():
 def axe(request, browser):
 	testname = request.node.name
 	results_file = testname + ".a11y.json"
-
 	axe = Axe(browser)
 	yield axe
 	axe.run()
@@ -53,8 +53,6 @@ def axe(request, browser):
 def test_login_page(browser, axe):
 	loginPage = LoginPage(browser).open()
 	axe.inject()
-
-
 
 @pytest.mark.accessibility
 @pytest.mark.search

@@ -12,6 +12,7 @@ class HomePage(SeleniumPage):
 	sign_out_link_locator = By.CSS_SELECTOR, ".user-info a.logout"
 	account_link_locator = By.CSS_SELECTOR, ".user-info a.account"
 	user_info_link_locator = By.CSS_SELECTOR, ".user-info > a:first-of-type"
+	contact_link_locator = By.CSS_SELECTOR, "#contact-link a"
 
 	def __init__(self, driver:WebDriver):
 		super().__init__(driver, self.URL)
@@ -50,6 +51,9 @@ class HomePage(SeleniumPage):
 			print(e)
 		return False
 
+	def click_contact_link(self):
+		contact_link = self.driver.find_element(*HomePage.contact_link_locator)
+		contact_link.click()
 
 	def get_account_link(self):
 		account_link =  self.driver.find_element(*HomePage.account_link_locator)

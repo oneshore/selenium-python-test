@@ -44,6 +44,6 @@ Beyond Testing
 ### Other uses for Selenium
 
 - Web Scraping
-- Dadta Mining
+- Data Mining
 - Process Automation
 - System Monitoring

@@ -16,6 +16,7 @@ pytest-html-reporter = "*"
 behave = "*"
 axe-selenium-python-dev = "*"
 axe-selenium-python = "*"
+appium-python-client = "*"
 
 [dev-packages]
 
